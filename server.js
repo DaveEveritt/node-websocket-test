@@ -7,12 +7,31 @@ let fs = require('fs');
 
 const PORT=8080; 
 
-// Phil's changes
+// Phil's changes, not working so mangled by my ignorance and pain
+
 // fs.readFile('client/index.html', function (err, html) {
 // if (err) throw err; 
 var server = http.createServer(function(request, response) { 
-  response.writeHeader(200, {"Content-Type": "text/html"}); 
+  // this fails as html obviously is no longer defined
   // response.write(html);
+  // so let's try this from SOverflow...
+
+  // console.dir(request.url);
+
+  // will get you  '/' or 'index.html' or 'css/styles.css' ...
+    // yeah yeah got that working but:
+
+  // - you need to isolate extension
+  // - have a small mimetype lookup array/object
+    // Why? Cant I just presume for now it's HTML??
+    
+  // - only there and then reading the file
+    // HOW? How read file? Gimme code!
+
+  // - delivering it after setting the right content type
+    // yeah, well that's this part below, no?
+
+  response.writeHeader(200, {"Content-Type": "text/html"}); 
   response.write(console.dir(request.url));
   response.end();
 }).listen(PORT, function () {
