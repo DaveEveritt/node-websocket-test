@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>TEST</title>
+</head>
+<body>
+
+  <h1>Hello Web Sockets</h1>
+  <div id="chatlog"></div>
+  <input type="text" id="message">
+  <input type="button" value="Send" onclick="sendMessage()">
+  <!-- lose 'onclick' later -->
+
+  <script>
+    "use strict";
+
+    let ws = new WebSocket('ws://localhost:8080', 'echo-protocol');
+
+    function sendMessage(){
+      console.log(ws);
+      let message = document.getElementById('message').value;
+      console.log(message);
+      ws.send(message);
+    }
+
+    ws.addEventListener('message', function(e){
+      // The data is the message being sent back
+      let msg = e.data;
+      // Append the message to the DOM
+      document.getElementById("chatlog").innerHTML += `<br>${msg}`;
+    });
+  </script>
+
+</body>
+</html>
