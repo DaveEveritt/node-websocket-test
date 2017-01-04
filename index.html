@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Sockets</title>
+</head>
+<body>
+
+  <h1>Hello Web Sockets</h1>
+  <div id="chatlog"></div>
+  <input type="text" id="message">
+  <input type="button" value="Send" onclick="sendMessage()">
+  <!-- lose 'onclick' later -->
+
+  <script>
+    "use strict";
+
+    let ws = new WebSocket('ws://localhost:8080', 'echo-protocol');
+
+    function sendMessage(){
+      console.log(ws);
+      let message = document.getElementById('message').value;
+      console.log(message);
+      ws.send(message);
+    }
+
+    ws.addEventListener('message', function(e){
+      // The data is the message being sent back
+      let msg = e.data;
+      // Append the message to the DOM
+      document.getElementById("chatlog").innerHTML += `<br>${msg}`;
+    });
+  </script>
+
+  <footer style="position: absolute; bottom: 0;">
+    <h2>WebSocket stuff I looked at:</h2>
+    <p>Adapted from <a href="http://codular.com/node-web-sockets">Starting with Node and Web Sockets</a>.</p>
+    <p>Thinking about <a href="http://usualcarrot.com/nodejs-and-websocket-simple-chat-tutorial">trying this next</a>.</p>
+    <p>Or a <a href="http://stackoverflow.com/a/12367024/123033">socket.io example</a>.</p>
+    <p>Or the example code on "the fastest" <a href="https://github.com/websockets/ws">websockets.ws</a></p>
+    <p>There's also <a href="http://cjihrig.com/blog/websockets-in-node-js-0-8-6-for-windows-7/">WebSockets in Node.js 0.8.6 for Windows 7</a></p>
+    <h2>These use JQuery</h2>
+    <p><a href="http://danielnill.com/nodejs-tutorial-with-socketio">Node.js Tutorial With Socket.io (2016)</a></p>
+    <p><a href="http://nayna.org/blog/?p=159"></a>Fun with websockets, Node.js and jQuery (2011)</p>
+  </footer>
+
+</body>
+</html>
