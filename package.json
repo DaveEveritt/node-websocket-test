@@ -1,0 +1,20 @@
+{
+  "name": "node-websocket-test",
+  "version": "1.0.0",
+  "description": "Simple WebSocket example",
+  "main": "server.js",
+  "dependencies": {
+    "websocket": "^1.0.24"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DaveEveritt/node-websocket-test.git"
+  },
+  "author": "Dave Everitt",
+  "license": "ISC"
+}
